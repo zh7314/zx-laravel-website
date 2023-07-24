@@ -1,7 +1,7 @@
-# zx-website
+# laravel10
 
 #### 介绍
-CMS，企业官网等后台
+laravel10和SCUI
 
 #### 软件架构
 软件架构说明
