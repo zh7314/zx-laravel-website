@@ -39,7 +39,7 @@ class LoginService
         if (empty($admin)) {
             throw new Exception('登录名不存在');
         }
-        if (md5(md5($password . $admin->salt)) !== $admin->password) {
+        if (md5(md5($password . $admin->salt)) !== (string)$admin->password) {
             throw new Exception('密码错误');
         }
 
