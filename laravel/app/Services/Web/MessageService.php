@@ -3,6 +3,7 @@
 namespace App\Services\Web;
 
 use App\Models\Message;
+use App\Utils\GlobalMsg;
 use Exception;
 use App\Utils\GlobalCode;
 use Illuminate\Support\Carbon;
@@ -33,72 +34,32 @@ class MessageService
 
         $message = new Message();
 
-        $message->real_name = isset($data['real_name']) ? $data['real_name'] : '';
-        $message->mobile = isset($data['mobile']) ? $data['mobile'] : '';
-        $message->email = isset($data['email']) ? $data['email'] : '';
-        $message->title = isset($data['title']) ? htmlspecialchars($data['title']) : '';
-        $message->content = isset($data['content']) ? htmlspecialchars($data['content']) : '';
-        $message->pics = isset($data['pics']) ? json_encode($data['pics']) : '';
-        $message->ip = $data['ip'];
+        isset($data['real_name']) && $message->real_name = $data['real_name'];
+        isset($data['email']) && $message->email = $data['real_name'];
+        isset($data['title']) && $message->title = $data['real_name'];
+        isset($data['content']) && $message->content = $data['real_name'];
+        isset($data['pics']) && $message->pics = implode(',', $data['pics']);
+        isset($data['ip']) && $message->ip = $data['ip'];
+
         $res = $message->save();
 
-
+        if ($res == false) {
+            throw new Exception(GlobalMsg::SAVE_FAIL);
+        }
+        return $res;
     }
 
-    public static function getList($where = [], $data = [], $page = 1, $pageSize = 15)
+    public static function processed($where = [])
     {
-        try {
-
-            $query = Message::where('is_delete', 10);
-
-            if (!empty($where['email'])) {
-                $query->where('email', $where['email']);
-            }
-            if (!empty($where['real_name'])) {
-                $query->where('real_name', 'like', '%' . $where['real_name'] . '%');
-            }
-            if (!empty($where['mobile'])) {
-                $query->where('mobile', $where['mobile']);
-            }
-            $count = $query->count();
-            $list = $query->forPage($page, $pageSize)->orderBy('id', 'desc')->get()->toArray();
-            foreach ($list as $k => &$v) {
-                $v['content'] = htmlspecialchars_decode($v['content']);
-                $v['title'] = htmlspecialchars_decode($v['title']);
-            }
-
-            return ['count' => $count, 'list' => $list];
-        } catch (Exception $e) {
-
-            throw new Exception($e->getMessage());
+        if (empty($where['id'])) {
+            throw new Exception('消息ID不存在');
         }
-    }
-
-    public static function getLatestMessage($where = [], $data = [])
-    {
-        try {
-            $time = Carbon::parse('-5 days')->toDateTimeString();
-//            $count = Message::where('is_delete', 10)->where('create_time', '>=', $time)->where('status', 10)->count();
-            $count = Message::where('is_delete', 10)->where('status', 10)->count();
-            return $count;
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+        $message = Message::where('status', 10)->where('id', $where['id'])->first();
+        if (empty($message)) {
+            throw new Exception('此消息不存在');
         }
-    }
-
-    public static function processed($where = [], $data = [])
-    {
-        try {
-
-            $message = Message::where('is_delete', 10)->where('status', 10)->where('id', $where['id'])->first();
-            if (empty($message)) {
-                throw new Exception('此消息不存在');
-            }
-            $message->status = 20;
-            $message->save();
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        $message->status = 20;
+        $message->save();
     }
 
     public static function sendEmail()
