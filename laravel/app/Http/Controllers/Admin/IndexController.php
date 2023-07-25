@@ -101,7 +101,7 @@ class IndexController extends Controller
             $data['src'] = URL::to($data['src']);
 
             return $this->success($data, '上传成功');
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return $this->fail($e);
         }
     }
@@ -118,7 +118,7 @@ class IndexController extends Controller
             $data['src'] = URL::to($data['src']);
 
             return $this->success($data, '上传成功');
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return $this->fail($e);
         }
     }

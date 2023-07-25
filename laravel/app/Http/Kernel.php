@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'admin.check' => \App\Http\Middleware\AdminCheck::class,
         'admin.log' => \App\Http\Middleware\AdminLog::class,
         'csrf' => \App\Http\Middleware\VerifyCsrfToken::class,
+        'api.log' => \App\Http\Middleware\ApiLog::class,
     ];
 }
