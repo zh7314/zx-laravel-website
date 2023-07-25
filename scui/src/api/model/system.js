@@ -150,6 +150,36 @@ export default {
 			}
 		}
 	},
+	apiLog: {
+		list: {
+			url: `${config.API_URL}/api/admin/requestLog/getList`,
+			name: "列表",
+			get: async function (params) {
+				return await http.post(this.url, params);
+			}
+		},
+		add: {
+			url: `${config.API_URL}/api/admin/requestLog/add`,
+			name: "增加",
+			post: async function (params) {
+				return await http.post(this.url, params);
+			}
+		},
+		save: {
+			url: `${config.API_URL}/api/admin/requestLog/save`,
+			name: "保存",
+			post: async function (params) {
+				return await http.post(this.url, params);
+			}
+		},
+		delete: {
+			url: `${config.API_URL}/api/admin/requestLog/delete`,
+			name: "删除",
+			post: async function (params) {
+				return await http.post(this.url, params);
+			}
+		}
+	},
 	dic: {
 		tree: {
 			url: `${config.API_URL}/system/dic/tree`,
