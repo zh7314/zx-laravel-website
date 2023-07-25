@@ -225,4 +225,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
         Route::post('/save', [\App\Http\Controllers\Admin\PlatformController::class, 'save']);
         Route::post('/delete', [\App\Http\Controllers\Admin\PlatformController::class, 'delete']);
     });
+
+    Route::group(['prefix' => 'message'], function () {
+        Route::post('/getList', [\App\Http\Controllers\Admin\MessageController::class, 'getList']);
+        Route::post('/getAll', [\App\Http\Controllers\Admin\MessageController::class, 'getAll']);
+        Route::post('/getOne', [\App\Http\Controllers\Admin\MessageController::class, 'getOne']);
+        Route::post('/add', [\App\Http\Controllers\Admin\MessageController::class, 'add']);
+        Route::post('/save', [\App\Http\Controllers\Admin\MessageController::class, 'save']);
+        Route::post('/delete', [\App\Http\Controllers\Admin\MessageController::class, 'delete']);
+    });
 });
