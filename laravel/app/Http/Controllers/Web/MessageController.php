@@ -40,7 +40,7 @@ class MessageController extends Controller
             $res = MessageService::saveData($where, $data);
 
             DB::commit();
-            return $this->success($res);
+            return $this->success($res, '反馈成功！');
         } catch (Throwable $e) {
             DB::rollBack();
             return $this->fail($e);

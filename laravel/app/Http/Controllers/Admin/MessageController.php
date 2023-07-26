@@ -91,12 +91,12 @@ class MessageController extends Controller
             $where['content'] = parameterCheck($request->input('content'), 'string', '');
             $where['email'] = parameterCheck($request->input('email'), 'string', '');
             $where['ip'] = parameterCheck($request->input('ip'), 'string', '');
-            $where['is_sent'] = parameterCheck($request->input('is_sent'), 'int', 0);
+            $where['is_sent'] = parameterCheck($request->input('is_sent'), 'int', 10);
             $where['mobile'] = parameterCheck($request->input('mobile'), 'string', '');
             $where['pics'] = parameterCheck($request->input('pics'), 'string', '');
             $where['real_name'] = parameterCheck($request->input('real_name'), 'string', '');
             $where['remark'] = parameterCheck($request->input('remark'), 'string', '');
-            $where['status'] = parameterCheck($request->input('status'), 'int', 0);
+            $where['status'] = parameterCheck($request->input('status'), 'int', 10);
             $where['title'] = parameterCheck($request->input('title'), 'string', '');
             $where['type'] = parameterCheck($request->input('type'), 'int', 0);
 
@@ -120,12 +120,12 @@ class MessageController extends Controller
             $where['content'] = parameterCheck($request->input('content'), 'string', '');
             $where['email'] = parameterCheck($request->input('email'), 'string', '');
             $where['ip'] = parameterCheck($request->input('ip'), 'string', '');
-            $where['is_sent'] = parameterCheck($request->input('is_sent'), 'int', 0);
+            $where['is_sent'] = parameterCheck($request->input('is_sent'), 'int', 10);
             $where['mobile'] = parameterCheck($request->input('mobile'), 'string', '');
             $where['pics'] = parameterCheck($request->input('pics'), 'string', '');
             $where['real_name'] = parameterCheck($request->input('real_name'), 'string', '');
             $where['remark'] = parameterCheck($request->input('remark'), 'string', '');
-            $where['status'] = parameterCheck($request->input('status'), 'int', 0);
+            $where['status'] = parameterCheck($request->input('status'), 'int', 10);
             $where['title'] = parameterCheck($request->input('title'), 'string', '');
             $where['type'] = parameterCheck($request->input('type'), 'int', 0);
 
