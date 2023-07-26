@@ -1,43 +1,15 @@
 <template>
 	<el-dialog :title=title v-model="visible" :width="800" destroy-on-close>
-		<el-form :model="form" :rules="rules" ref="dialogForm" disabled label-width="100px"
+		<el-form :model="form" :rules="rules" ref="dialogForm" label-width="100px"
 				 label-position="left">
 			<el-form-item label="处理意见" prop="remark">
 				<el-input v-model="form.remark" :rows="5"
 						  type="textarea" clearable></el-input>
 			</el-form-item>
-			<el-form-item label="姓名" prop="real_name">
-				<el-input v-model="form.real_name" clearable></el-input>
-			</el-form-item>
-			<el-form-item label="联系方式" prop="mobile">
-				<el-input v-model="form.mobile" clearable></el-input>
-			</el-form-item>
-			<el-form-item label="邮件" prop="email">
-				<el-input v-model="form.email" clearable></el-input>
-			</el-form-item>
-			<el-form-item label="标题" prop="title">
-				<el-input v-model="form.title" clearable></el-input>
-			</el-form-item>
-			<el-form-item label="反馈内容" prop="content">
-				<el-input v-model="form.content" :rows="5"
-						  type="textarea" clearable></el-input>
-			</el-form-item>
-			<el-form-item label="图片集" prop="pics">
-				<sc-upload-multiple v-model="form.pics" draggable :limit="5"
-									tip="最多上传5个文件,单个文件不要超过10M,请上传图像格式文件"></sc-upload-multiple>
-			</el-form-item>
-			<el-form-item label="所属平台" prop="platform">
-				<el-cascader v-model="form.platform" :options="platform.list" :props="platform.props"
-							 :show-all-levels="false" clearable style="width: 50%;"></el-cascader>
-			</el-form-item>
-			<el-form-item label="语言类型" prop="lang">
-				<el-cascader v-model="form.lang" :options="lang.list" :props="lang.props"
-							 :show-all-levels="false" clearable style="width: 50%;"></el-cascader>
-			</el-form-item>
 		</el-form>
 		<template #footer>
 			<el-button @click="visible=false">取 消</el-button>
-			<el-button type="primary" @click="submit()" disabled>保 存</el-button>
+			<el-button type="primary" @click="submit()">保 存</el-button>
 		</template>
 	</el-dialog>
 </template>
@@ -74,27 +46,12 @@ export default {
 					label: "name"
 				}
 			},
-			title: '编辑',
+			title: '处理',
 			visible: false,
 			form: {},
 			//验证规则
 			rules: {
 				remark: [
-					{required: true, message: '请输入'}
-				],
-				real_name: [
-					{required: true, message: '请输入'}
-				],
-				mobile: [
-					{required: true, message: '请输入'}
-				],
-				content: [
-					{required: true, message: '请输入'}
-				],
-				platform: [
-					{required: true, message: '请输入'}
-				],
-				lang: [
 					{required: true, message: '请输入'}
 				]
 			}

@@ -43,7 +43,7 @@
 		</el-container>
 	</el-container>
 
-	<el-drawer v-model="infoDrawer" title="日志详情" :size="600" destroy-on-close>
+	<el-drawer v-model="infoDrawer" title="日志详情" :size="800" destroy-on-close>
 		<info ref="info"></info>
 	</el-drawer>
 </template>

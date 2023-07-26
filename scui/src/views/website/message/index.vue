@@ -6,8 +6,8 @@
 			</div>
 			<div class="right-panel">
 				<div class="right-panel-search">
-					<el-input v-model="search.nick_name" placeholder="昵称" clearable></el-input>
-					<el-input v-model="search.contact" placeholder="联系方式" clearable></el-input>
+					<el-input v-model="search.real_name" placeholder="联系人" clearable></el-input>
+					<el-input v-model="search.mobile" placeholder="联系方式" clearable></el-input>
 					<el-button type="primary" icon="el-icon-search" @click="upsearch">搜索</el-button>
 				</div>
 			</div>
@@ -18,18 +18,37 @@
 				<el-table-column label="id" prop="id" width="70"></el-table-column>
 				<el-table-column label="平台类型" prop="platform" width="90"></el-table-column>
 				<el-table-column label="语言类型" prop="lang" width="90"></el-table-column>
-				<el-table-column label="昵称" prop="nick_name" show-overflow-tooltip
+				<el-table-column label="标题" prop="title" show-overflow-tooltip
 								 min-width="100"></el-table-column>
-				<el-table-column label="联系方式" prop="contact" show-overflow-tooltip
-								 min-width="150"></el-table-column>
+				<el-table-column label="联系人" prop="real_name" width="150"></el-table-column>
+				<el-table-column label="联系方式" prop="mobile" width="150"></el-table-column>
+				<el-table-column label="处理意见" prop="remark" show-overflow-tooltip
+								 min-width="100"></el-table-column>
+				<el-table-column label="处理状态" prop="is_show" width="150">
+					<template #default="scope">
+						<el-tag v-if="scope.row.status==10" type="success">待处理</el-tag>
+						<el-tag v-if="scope.row.status==20" type="danger">已处理</el-tag>
+					</template>
+				</el-table-column>
+				<el-table-column label="邮件是否发送" prop="is_sent" width="150">
+					<template #default="scope">
+						<el-tag v-if="scope.row.is_sent==10" type="success">待发送</el-tag>
+						<el-tag v-if="scope.row.is_sent==100" type="danger">发送成功</el-tag>
+					</template>
+				</el-table-column>
+				<el-table-column label="邮件" prop="email" width="150"></el-table-column>
 				<el-table-column label="反馈内容	" prop="content" show-overflow-tooltip
-								 min-width="250"></el-table-column>
+								 min-width="100"></el-table-column>
+				<el-table-column label="请求IP" prop="ip" width="150"></el-table-column>
 				<el-table-column label="创建时间" prop="create_at" width="150"></el-table-column>
-				<el-table-column label="操作" fixed="right" align="center" width="150">
+				<el-table-column label="操作" fixed="right" align="center" width="200">
 					<template #default="scope">
 						<el-button-group>
 							<el-button text type="primary" size="small" @click="edit(scope.row, scope.$index)">
-								编辑
+								详情
+							</el-button>
+							<el-button text type="primary" size="small" @click="deal(scope.row, scope.$index)">
+								处理
 							</el-button>
 							<el-popconfirm title="确定删除吗？" @confirm="del(scope.row, scope.$index)">
 								<template #reference>
@@ -49,23 +68,29 @@
 	<save-dialog v-if="dialog.save" ref="saveDialog" @success="handleSaveSuccess"
 				 @closed="dialog.save=false"></save-dialog>
 
+	<deal-dialog v-if="dialog.deal" ref="dealDialog" @success="handleSaveSuccess"
+				 @closed="dialog.deal=false"></deal-dialog>
+
 </template>
 
 <script>
 import addDialog from './add'
 import saveDialog from './save'
+import dealDialog from './deal'
 
 export default {
 	name: 'admin',
 	components: {
 		addDialog,
-		saveDialog
+		saveDialog,
+		dealDialog
 	},
 	data() {
 		return {
 			dialog: {
 				add: false,
-				save: false
+				save: false,
+				deal: false,
 			},
 			apiObj: this.$API.website.message.list,
 			selection: [],
@@ -85,6 +110,13 @@ export default {
 			this.dialog.save = true
 			this.$nextTick(() => {
 				this.$refs.saveDialog.open().setData(row)
+			})
+		},
+		//处理
+		deal(row) {
+			this.dialog.deal = true
+			this.$nextTick(() => {
+				this.$refs.dealDialog.open().setData(row)
 			})
 		},
 		//删除
