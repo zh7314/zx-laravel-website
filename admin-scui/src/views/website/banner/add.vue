@@ -2,6 +2,10 @@
 	<el-dialog :title=title v-model="visible" :width="600" destroy-on-close>
 		<el-form :model="form" :rules="rules" ref="dialogForm" label-width="100px"
 				 label-position="left">
+			<el-form-item label="分类" prop="banner_cate_id">
+				<el-cascader v-model="form.banner_cate_id" :options="options" :props="props"
+							 :show-all-levels="false" clearable style="width: 100%;"></el-cascader>
+			</el-form-item>
 			<el-form-item label="标题" prop="name">
 				<el-input v-model="form.name" clearable></el-input>
 			</el-form-item>
@@ -90,12 +94,21 @@ export default {
 				lang: [
 					{required: true, message: '请输入'}
 				]
+			},
+			//所需数据选项
+			options: [],
+			props: {
+				value: "id",
+				emitPath: false,
+				checkStrictly: true,
+				label: "name"
 			}
 		}
 	},
 	mounted() {
 		this.getLang()
 		this.getPlatform()
+		this.getBannerCate()
 	},
 	methods: {
 		async getLang() {
@@ -119,6 +132,11 @@ export default {
 		open() {
 			this.visible = true;
 			return this
+		},
+		//加载树数据
+		async getBannerCate() {
+			var res = await this.$API.website.bannerCate.getTree.get();
+			this.options = res.data;
 		},
 		//表单提交方法
 		submit() {

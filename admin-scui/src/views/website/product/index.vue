@@ -20,7 +20,7 @@
 				<el-table-column label="id" prop="id" width="70"></el-table-column>
 				<el-table-column label="平台类型" prop="platform" width="90"></el-table-column>
 				<el-table-column label="语言类型" prop="lang" width="90"></el-table-column>
-				<el-table-column label="所属分类" prop="product_cate.name" width="100"></el-table-column>
+				<el-table-column label="所属分类" prop="product_cate.name" width="180"></el-table-column>
 				<el-table-column label="标题" prop="title" show-overflow-tooltip
 								 min-width="300"></el-table-column>
 				<el-table-column label="短标题" prop="short_title" show-overflow-tooltip

@@ -32,6 +32,43 @@ export default {
 			}
 		}
 	},
+	bannerCate: {
+		list: {
+			url: `${config.API_URL}/api/admin/bannerCate/getList`,
+			name: "列表",
+			get: async function (params) {
+				return await http.post(this.url, params);
+			}
+		},
+		add: {
+			url: `${config.API_URL}/api/admin/bannerCate/add`,
+			name: "增加",
+			post: async function (params) {
+				return await http.post(this.url, params);
+			}
+		},
+		save: {
+			url: `${config.API_URL}/api/admin/bannerCate/save`,
+			name: "保存",
+			post: async function (params) {
+				return await http.post(this.url, params);
+			}
+		},
+		delete: {
+			url: `${config.API_URL}/api/admin/bannerCate/delete`,
+			name: "删除",
+			post: async function (params) {
+				return await http.post(this.url, params);
+			}
+		},
+		getTree: {
+			url: `${config.API_URL}/api/admin/getBannerCateTree`,
+			name: "分组树菜单",
+			get: async function (params) {
+				return await http.post(this.url, params);
+			}
+		},
+	},
 	lang: {
 		list: {
 			url: `${config.API_URL}/api/admin/lang/getList`,
@@ -152,7 +189,7 @@ export default {
 			}
 		},
 		getTree: {
-			url: `${config.API_URL}/api/admin/getdownloadCateTree`,
+			url: `${config.API_URL}/api/admin/getDownloadCateTree`,
 			name: "分组树菜单",
 			get: async function (params) {
 				return await http.post(this.url, params);

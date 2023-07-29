@@ -8,7 +8,7 @@
 				<div class="right-panel-search">
 					<el-cascader v-model="search.video_cate_id" :options="options" :props="props"
 								 :show-all-levels="false"
-								 clearable style="width: 100%;" placeholder="选择类型"></el-cascader>
+								 clearable style="width: 100%;" placeholder="选择分类"></el-cascader>
 					<el-input v-model="search.name" placeholder="标题" clearable></el-input>
 					<el-button type="primary" icon="el-icon-search" @click="upsearch">搜索</el-button>
 				</div>

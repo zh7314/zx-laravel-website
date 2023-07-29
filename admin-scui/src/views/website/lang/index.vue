@@ -6,8 +6,8 @@
 			</div>
 			<div class="right-panel">
 				<div class="right-panel-search">
-					<el-input v-model="search.name" placeholder="登录名" clearable></el-input>
-					<el-input v-model="search.real_name" placeholder="真实姓名" clearable></el-input>
+					<el-input v-model="search.name" placeholder="名称" clearable></el-input>
+					<el-input v-model="search.value" placeholder="值" clearable></el-input>
 					<el-button type="primary" icon="el-icon-search" @click="upsearch">搜索</el-button>
 				</div>
 			</div>

@@ -6,8 +6,10 @@
 			</div>
 			<div class="right-panel">
 				<div class="right-panel-search">
-					<el-input v-model="search.name" placeholder="登录名" clearable></el-input>
-					<el-input v-model="search.real_name" placeholder="真实姓名" clearable></el-input>
+					<el-cascader v-model="search.banner_cate_id" :options="options" :props="props"
+								 :show-all-levels="false"
+								 clearable style="width: 100%;" placeholder="选择分类"></el-cascader>
+					<el-input v-model="search.name" placeholder="标题" clearable></el-input>
 					<el-button type="primary" icon="el-icon-search" @click="upsearch">搜索</el-button>
 				</div>
 			</div>
@@ -19,6 +21,7 @@
 				<el-table-column label="平台类型" prop="platform" width="90"></el-table-column>
 				<el-table-column label="语言类型" prop="lang" width="90"></el-table-column>
 				<el-table-column label="标题" prop="name" show-overflow-tooltip min-width="400"></el-table-column>
+				<el-table-column label="分类名称" prop="banner_cate.name" width="150"></el-table-column>
 				<el-table-column label="图片" prop="pic_path" width="100">
 					<template #default="scope">
 						<el-popover>
@@ -80,8 +83,19 @@ export default {
 			},
 			apiObj: this.$API.website.banner.list,
 			selection: [],
-			search: {}
+			search: {},
+			//所需数据选项
+			options: [],
+			props: {
+				value: "id",
+				emitPath: false,
+				checkStrictly: true,
+				label: "name"
+			}
 		}
+	},
+	mounted() {
+		this.getBannerCate()
 	},
 	methods: {
 		//添加
@@ -97,6 +111,11 @@ export default {
 			this.$nextTick(() => {
 				this.$refs.saveDialog.open().setData(row)
 			})
+		},
+		//加载树数据
+		async getBannerCate() {
+			var res = await this.$API.website.bannerCate.getTree.get();
+			this.options = res.data;
 		},
 		//删除
 		async del(row) {
