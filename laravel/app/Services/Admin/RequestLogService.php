@@ -35,6 +35,12 @@ class RequestLogService
         if (!empty($where['return_at'])) {
             $requestLog = $requestLog->where('return_at', $where['return_at']);
         }
+        if (!empty($where['time']['0'])) {
+            $requestLog = $requestLog->where('create_at', '>=', $where['time']['0']);
+        }
+        if (!empty($where['time']['1'])) {
+            $requestLog = $requestLog->where('create_at', '<=', $where['time']['1']);
+        }
 
         $count = $requestLog->count();
 

@@ -6,6 +6,7 @@ namespace App\Services\Admin;
 use App\Models\Admin;
 use App\Models\AdminGroup;
 use App\Models\AdminPermission;
+use App\Models\BannerCate;
 use App\Models\DownloadCate;
 use App\Models\NewsCate;
 use App\Models\ProductCate;
@@ -388,6 +389,17 @@ class CommonService
     public static function getVideoCateTree(array $array = [])
     {
         $cate = VideoCate::orderBy('sort', 'asc')->orderBy('id', 'asc')->get()->toArray();
+
+        if (empty($cate)) {
+            return [];
+        }
+        //获取菜单树数组
+        return self::treeMenu($cate);
+    }
+
+    public static function getBannerCateTree(array $array = [])
+    {
+        $cate = BannerCate::orderBy('sort', 'asc')->orderBy('id', 'asc')->get()->toArray();
 
         if (empty($cate)) {
             return [];

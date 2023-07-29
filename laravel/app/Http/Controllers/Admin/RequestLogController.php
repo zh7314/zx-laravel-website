@@ -28,6 +28,7 @@ class RequestLogController extends Controller
             $where['header'] = parameterCheck($request->input('header'), 'string', '');
             $where['data'] = parameterCheck($request->input('data'), 'string', '');
             $where['return_at'] = parameterCheck($request->input('return_at'), 'string', '');
+            $where['time'] = parameterCheck($request->input('time'), 'array', []);
 
             $data = RequestLogService::getList($where, $page, $pageSize);
 

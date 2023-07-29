@@ -12,7 +12,7 @@ class BannerService
 
     public static function getList(array $where = [], int $page = 0, int $pageSize = 0)
     {
-        $banner = new Banner();
+        $banner = Banner::with(['banner_cate']);
 
         if (!empty($where['admin_id'])) {
             $banner = $banner->where('admin_id', $where['admin_id']);
@@ -43,6 +43,9 @@ class BannerService
         }
         if (!empty($where['video_path'])) {
             $banner = $banner->where('video_path', $where['video_path']);
+        }
+        if (!empty($where['banner_cate_id'])) {
+            $banner = $banner->where('banner_cate_id', $where['banner_cate_id']);
         }
 
         $count = $banner->count();
@@ -120,7 +123,7 @@ class BannerService
         isset($where['start_time']) && $banner->start_time = $where['start_time'];
         isset($where['url']) && $banner->url = $where['url'];
         isset($where['video_path']) && $banner->video_path = $where['video_path'];
-
+        isset($where['banner_cate_id']) && $banner->banner_cate_id = $where['banner_cate_id'];
 
         $res = $banner->save();
         if ($res == false) {
@@ -149,7 +152,7 @@ class BannerService
         isset($where['start_time']) && $banner->start_time = $where['start_time'];
         isset($where['url']) && $banner->url = $where['url'];
         isset($where['video_path']) && $banner->video_path = $where['video_path'];
-
+        isset($where['banner_cate_id']) && $banner->banner_cate_id = $where['banner_cate_id'];
 
         $res = $banner->save();
         if ($res == false) {

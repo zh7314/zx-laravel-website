@@ -33,10 +33,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
 
     Route::post('/getGroupTree', [\App\Http\Controllers\Admin\IndexController::class, 'getGroupTree']);//获取权限组树状结构
     Route::post('/getMenuTree', [\App\Http\Controllers\Admin\IndexController::class, 'getMenuTree']);//获取所有权限树状结构
-    Route::post('/getdownloadCateTree', [\App\Http\Controllers\Admin\IndexController::class, 'getdownloadCateTree']);
+    Route::post('/getDownloadCateTree', [\App\Http\Controllers\Admin\IndexController::class, 'getDownloadCateTree']);
     Route::post('/getNewsCateTree', [\App\Http\Controllers\Admin\IndexController::class, 'getNewsCateTree']);
     Route::post('/getProductCateTree', [\App\Http\Controllers\Admin\IndexController::class, 'getProductCateTree']);
     Route::post('/getVideoCateTree', [\App\Http\Controllers\Admin\IndexController::class, 'getVideoCateTree']);
+    Route::post('/getBannerCateTree', [\App\Http\Controllers\Admin\IndexController::class, 'getBannerCateTree']);
 
     Route::group(['prefix' => 'admin'], function () {
         Route::post('/getList', [\App\Http\Controllers\Admin\AdminController::class, 'getList']);
@@ -81,6 +82,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
         Route::post('/add', [\App\Http\Controllers\Admin\BannerController::class, 'add']);
         Route::post('/save', [\App\Http\Controllers\Admin\BannerController::class, 'save']);
         Route::post('/delete', [\App\Http\Controllers\Admin\BannerController::class, 'delete']);
+    });
+
+    Route::group(['prefix' => 'bannerCate'], function () {
+        Route::post('/getList', [\App\Http\Controllers\Admin\BannerCateController::class, 'getList']);
+        Route::post('/getAll', [\App\Http\Controllers\Admin\BannerCateController::class, 'getAll']);
+        Route::post('/getOne', [\App\Http\Controllers\Admin\BannerCateController::class, 'getOne']);
+        Route::post('/add', [\App\Http\Controllers\Admin\BannerCateController::class, 'add']);
+        Route::post('/save', [\App\Http\Controllers\Admin\BannerCateController::class, 'save']);
+        Route::post('/delete', [\App\Http\Controllers\Admin\BannerCateController::class, 'delete']);
     });
 
     Route::group(['prefix' => 'config'], function () {

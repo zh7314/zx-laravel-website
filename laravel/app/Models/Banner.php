@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,4 +11,8 @@ class Banner extends Model {
 
     public $timestamps = false;
 
+    public function banner_cate()
+    {
+        return $this->hasOne(\App\Models\BannerCate::class, 'id', 'banner_cate_id');
+    }
 }

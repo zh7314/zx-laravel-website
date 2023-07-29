@@ -227,4 +227,15 @@ class IndexController extends Controller
         }
     }
 
+    public function getBannerCateTree(Request $request)
+    {
+        try {
+
+            $data = CommonService::getBannerCateTree();
+
+            return $this->success($data);
+        } catch (Throwable $e) {
+            return $this->fail($e);
+        }
+    }
 }
