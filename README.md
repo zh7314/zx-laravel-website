@@ -8,12 +8,12 @@
 [SCUI](https://gitee.com/lolicode/scui)
 
 
-### 后端组件
+### 后端开发组件
 php 8.0     
 laravel 9.0     
 composer 2      
 
-### 前端组件
+### 前端开发组件
 scui 1.6.9      
 node v14.21.3       
 

@@ -8,11 +8,11 @@
 [SCUI](https://gitee.com/lolicode/scui)
 
 
-### Back-end component
+### Back-end development component
 php 8.0     
 laravel 9.0     
 composer 2
 
-### Front-end component
+### Front-end development component
 scui 1.6.9      
 node v14.21.3       
