@@ -31,6 +31,7 @@ class IndexController extends Controller
 
     public function login(Request $request)
     {
+        DB::beginTransaction();
         try {
 
             $name = parameterCheck($request->username, 'string', '');
@@ -39,9 +40,10 @@ class IndexController extends Controller
             $captchaKey = parameterCheck($request->captchaKey, 'string', '');
 
             $data = LoginService::login($name, $password, $code, $captchaKey);
-
+            DB::commit();
             return $this->success($data, '登录成功');
         } catch (Throwable $e) {
+            DB::rollBack();
             return $this->fail($e);
         }
     }
@@ -143,7 +145,11 @@ class IndexController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('admin_id'), 'int', 0);
+
+            $where['userPassword'] = parameterCheck($request->input('userPassword'), 'string', '');
+            $where['newPassword'] = parameterCheck($request->input('newPassword'), 'string', '');
+            $where['confirmNewPassword'] = parameterCheck($request->input('confirmNewPassword'), 'string', '');
 
             $data = LoginService::changePwd($where);
 
