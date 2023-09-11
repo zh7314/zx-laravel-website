@@ -13,6 +13,9 @@ php 8.0
 laravel 9.0     
 composer 2
 
+### database sql(use the latest date file)
+`laravel\doc\sql_bak`
+
 ### Front-end development component
 scui 1.6.9      
 node v14.21.3       
