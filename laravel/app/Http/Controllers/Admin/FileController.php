@@ -16,8 +16,8 @@ class FileController extends Controller{
     public function getList(Request $request) {
         try {
             $where = [];
-            $page = parameterCheck($request->page,'int',0);
-            $pageSize = parameterCheck($request->pageSize,'int',0);
+            $page = parameterCheck($request->input('page'),'int',0);
+            $pageSize = parameterCheck($request->input('pageSize'),'int',0);
 
             $where['admin_id']= parameterCheck($request->input('admin_id'),'float',0);
 $where['file_name']= parameterCheck($request->input('file_name'),'string','');
@@ -55,7 +55,7 @@ $where['file_size']= parameterCheck($request->input('file_size'),'int',0);
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = FileService::getOne($where['id']);
 
@@ -90,7 +90,7 @@ $where['file_size']= parameterCheck($request->input('file_size'),'int',0);
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id']= parameterCheck($request->id,'int',0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['admin_id']= parameterCheck($request->input('admin_id'),'float',0);
 $where['file_name']= parameterCheck($request->input('file_name'),'string','');
 $where['file_path']= parameterCheck($request->input('file_path'),'string','');
@@ -111,7 +111,7 @@ $where['file_size']= parameterCheck($request->input('file_size'),'int',0);
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id']= parameterCheck($request->id,'int',0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = FileService::delete($where['id']);
 
             DB::commit();

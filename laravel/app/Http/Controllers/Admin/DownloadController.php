@@ -74,7 +74,7 @@ class DownloadController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = DownloadService::getOne($where['id']);
 
@@ -119,7 +119,7 @@ class DownloadController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['admin_id'] = parameterCheck($request->input('admin_id'), 'float', 0);
             $where['download_cate_id'] = parameterCheck($request->input('download_cate_id'), 'float', 0);
             $where['introduction'] = parameterCheck($request->input('introduction'), 'string', '');
@@ -149,7 +149,7 @@ class DownloadController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = DownloadService::delete($where['id']);
 
             DB::commit();

@@ -65,7 +65,7 @@ class RequestLogController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = RequestLogService::getOne($where['id']);
 
@@ -105,7 +105,7 @@ class RequestLogController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['method'] = parameterCheck($request->input('method'), 'string', '');
             $where['ip'] = parameterCheck($request->input('ip'), 'string', '');
             $where['url'] = parameterCheck($request->input('url'), 'string', '');
@@ -130,7 +130,7 @@ class RequestLogController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = RequestLogService::delete($where['id']);
 
             DB::commit();

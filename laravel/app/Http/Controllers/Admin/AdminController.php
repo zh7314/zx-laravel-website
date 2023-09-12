@@ -71,7 +71,7 @@ class AdminController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = AdminService::getOne($where['id']);
 
@@ -117,7 +117,7 @@ class AdminController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['admin_group_ids'] = parameterCheck($request->input('admin_group_ids'), 'array', []);
             $where['avatar'] = parameterCheck($request->input('avatar'), 'string', '');
             $where['email'] = parameterCheck($request->input('email'), 'string', '');
@@ -150,7 +150,7 @@ class AdminController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = AdminService::delete($where['id']);
 

@@ -80,7 +80,7 @@ class NewsController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = NewsService::getOne($where['id']);
 
@@ -130,7 +130,7 @@ class NewsController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['admin_id'] = parameterCheck($request->input('admin_id'), 'int', 0);
             $where['content'] = parameterCheck($request->input('content'), 'string', '');
             $where['count'] = parameterCheck($request->input('count'), 'int', 0);
@@ -165,7 +165,7 @@ class NewsController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = NewsService::delete($where['id']);
 
             DB::commit();

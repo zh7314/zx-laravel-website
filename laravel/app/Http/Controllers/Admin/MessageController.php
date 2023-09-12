@@ -72,7 +72,7 @@ class MessageController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = MessageService::getOne($where['id']);
 
@@ -116,7 +116,7 @@ class MessageController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['content'] = parameterCheck($request->input('content'), 'string', '');
             $where['email'] = parameterCheck($request->input('email'), 'string', '');
             $where['ip'] = parameterCheck($request->input('ip'), 'string', '');
@@ -145,7 +145,7 @@ class MessageController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = MessageService::delete($where['id']);
 
             DB::commit();

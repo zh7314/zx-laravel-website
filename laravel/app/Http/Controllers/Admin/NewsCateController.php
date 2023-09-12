@@ -62,7 +62,7 @@ class NewsCateController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = NewsCateService::getOne($where['id']);
 
@@ -101,7 +101,7 @@ class NewsCateController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['is_show'] = parameterCheck($request->input('is_show'), 'int', 0);
             $where['lang'] = parameterCheck($request->input('lang'), 'string', '');
             $where['name'] = parameterCheck($request->input('name'), 'string', '');
@@ -125,7 +125,7 @@ class NewsCateController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = NewsCateService::delete($where['id']);
 
             DB::commit();

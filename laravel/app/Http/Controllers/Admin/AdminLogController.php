@@ -68,7 +68,7 @@ class AdminLogController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = AdminLogService::getOne($where['id']);
 
@@ -110,7 +110,7 @@ class AdminLogController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['admin_id'] = parameterCheck($request->input('admin_id'), 'float', 0);
             $where['admin_name'] = parameterCheck($request->input('admin_name'), 'string', '');
             $where['data'] = parameterCheck($request->input('data'), 'string', '');
@@ -137,7 +137,7 @@ class AdminLogController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = AdminLogService::delete($where['id']);
 
             DB::commit();

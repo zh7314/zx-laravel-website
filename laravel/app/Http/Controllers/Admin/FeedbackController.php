@@ -16,8 +16,8 @@ class FeedbackController extends Controller{
     public function getList(Request $request) {
         try {
             $where = [];
-            $page = parameterCheck($request->page,'int',0);
-            $pageSize = parameterCheck($request->pageSize,'int',0);
+            $page = parameterCheck($request->input('page'),'int',0);
+            $pageSize = parameterCheck($request->input('pageSize'),'int',0);
 
             $where['contact']= parameterCheck($request->input('contact'),'string','');
 $where['content']= parameterCheck($request->input('content'),'string','');
@@ -57,7 +57,7 @@ $where['platform']= parameterCheck($request->input('platform'),'string','');
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = FeedbackService::getOne($where['id']);
 
@@ -93,7 +93,7 @@ $where['platform']= parameterCheck($request->input('platform'),'string','');
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id']= parameterCheck($request->id,'int',0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['contact']= parameterCheck($request->input('contact'),'string','');
 $where['content']= parameterCheck($request->input('content'),'string','');
 $where['lang']= parameterCheck($request->input('lang'),'string','');
@@ -115,7 +115,7 @@ $where['platform']= parameterCheck($request->input('platform'),'string','');
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id']= parameterCheck($request->id,'int',0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = FeedbackService::delete($where['id']);
 
             DB::commit();

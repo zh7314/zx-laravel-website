@@ -16,8 +16,8 @@ class AdminPermissionController extends Controller{
     public function getList(Request $request) {
         try {
             $where = [];
-            $page = parameterCheck($request->page,'int',0);
-            $pageSize = parameterCheck($request->pageSize,'int',0);
+            $page = parameterCheck($request->input('page'),'int',0);
+            $pageSize = parameterCheck($request->input('pageSize'),'int',0);
 
             $where['component']= parameterCheck($request->input('component'),'string','');
 $where['hidden']= parameterCheck($request->input('hidden'),'int',0);
@@ -63,7 +63,7 @@ $where['sort']= parameterCheck($request->input('sort'),'int',0);
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = AdminPermissionService::getOne($where['id']);
 
@@ -102,7 +102,7 @@ $where['sort']= parameterCheck($request->input('sort'),'int',0);
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id']= parameterCheck($request->id,'int',0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['component']= parameterCheck($request->input('component'),'string','');
 $where['hidden']= parameterCheck($request->input('hidden'),'int',0);
 $where['icon']= parameterCheck($request->input('icon'),'string','');
@@ -127,7 +127,7 @@ $where['sort']= parameterCheck($request->input('sort'),'int',0);
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id']= parameterCheck($request->id,'int',0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = AdminPermissionService::delete($where['id']);
 
             DB::commit();

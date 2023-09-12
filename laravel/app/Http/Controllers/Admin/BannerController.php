@@ -70,7 +70,7 @@ class BannerController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = BannerService::getOne($where['id']);
 
@@ -114,7 +114,7 @@ class BannerController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['admin_id'] = parameterCheck($request->input('admin_id'), 'float', 0);
             $where['end_time'] = parameterCheck($request->input('end_time'), 'string', '');
             $where['lang'] = parameterCheck($request->input('lang'), 'string', '');
@@ -143,7 +143,7 @@ class BannerController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = BannerService::delete($where['id']);
 
             DB::commit();

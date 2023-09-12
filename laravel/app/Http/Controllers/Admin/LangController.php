@@ -56,7 +56,7 @@ class LangController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = LangService::getOne($where['id']);
 
@@ -92,7 +92,7 @@ class LangController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['name'] = parameterCheck($request->input('name'), 'string', '');
             $where['sort'] = parameterCheck($request->input('sort'), 'int', 0);
             $where['value'] = parameterCheck($request->input('value'), 'string', '');
@@ -113,7 +113,7 @@ class LangController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = LangService::delete($where['id']);
 
             DB::commit();

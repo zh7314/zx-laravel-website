@@ -82,7 +82,7 @@ class ProductController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = ProductService::getOne($where['id']);
 
@@ -131,7 +131,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['admin_id'] = parameterCheck($request->input('admin_id'), 'int', 0);
             $where['content'] = parameterCheck($request->input('content'), 'string', '');
             $where['end_time'] = parameterCheck($request->input('end_time'), 'string', '');
@@ -165,7 +165,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = ProductService::delete($where['id']);
 
             DB::commit();

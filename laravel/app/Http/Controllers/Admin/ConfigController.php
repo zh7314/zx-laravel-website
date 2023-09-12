@@ -16,8 +16,8 @@ class ConfigController extends Controller{
     public function getList(Request $request) {
         try {
             $where = [];
-            $page = parameterCheck($request->page,'int',0);
-            $pageSize = parameterCheck($request->pageSize,'int',0);
+            $page = parameterCheck($request->input('page'),'int',0);
+            $pageSize = parameterCheck($request->input('pageSize'),'int',0);
 
             $where['name']= parameterCheck($request->input('name'),'string','');
 $where['value']= parameterCheck($request->input('value'),'string','');
@@ -51,7 +51,7 @@ $where['value']= parameterCheck($request->input('value'),'string','');
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = ConfigService::getOne($where['id']);
 
@@ -84,7 +84,7 @@ $where['value']= parameterCheck($request->input('value'),'string','');
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id']= parameterCheck($request->id,'int',0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['name']= parameterCheck($request->input('name'),'string','');
 $where['value']= parameterCheck($request->input('value'),'string','');
 
@@ -103,7 +103,7 @@ $where['value']= parameterCheck($request->input('value'),'string','');
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id']= parameterCheck($request->id,'int',0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = ConfigService::delete($where['id']);
 
             DB::commit();

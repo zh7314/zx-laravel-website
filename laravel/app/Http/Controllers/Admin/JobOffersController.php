@@ -70,7 +70,7 @@ class JobOffersController extends Controller
         try {
             $where = [];
 
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
 
             $data = JobOffersService::getOne($where['id']);
 
@@ -113,7 +113,7 @@ class JobOffersController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $where['content'] = parameterCheck($request->input('content'), 'string', '');
             $where['is_show'] = parameterCheck($request->input('is_show'), 'int', 0);
             $where['lang'] = parameterCheck($request->input('lang'), 'string', '');
@@ -141,7 +141,7 @@ class JobOffersController extends Controller
         DB::beginTransaction();
         try {
             $where = [];
-            $where['id'] = parameterCheck($request->id, 'int', 0);
+            $where['id'] = parameterCheck($request->input('id'), 'int', 0);
             $data = JobOffersService::delete($where['id']);
 
             DB::commit();
