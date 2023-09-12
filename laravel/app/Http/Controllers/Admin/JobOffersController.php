@@ -18,8 +18,8 @@ class JobOffersController extends Controller
     {
         try {
             $where = [];
-            $page = parameterCheck($request->page, 'int', 0);
-            $pageSize = parameterCheck($request->pageSize, 'int', 0);
+            $page = parameterCheck($request->input('page'), 'int', 0);
+            $pageSize = parameterCheck($request->input('pageSize'), 'int', 0);
 
             $where['content'] = parameterCheck($request->input('content'), 'string', '');
             $where['is_show'] = parameterCheck($request->input('is_show'), 'int', 0);

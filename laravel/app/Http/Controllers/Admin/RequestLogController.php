@@ -18,8 +18,8 @@ class RequestLogController extends Controller
     {
         try {
             $where = [];
-            $page = parameterCheck($request->page, 'int', 0);
-            $pageSize = parameterCheck($request->pageSize, 'int', 0);
+            $page = parameterCheck($request->input('page'), 'int', 0);
+            $pageSize = parameterCheck($request->input('pageSize'), 'int', 0);
 
             $where['method'] = parameterCheck($request->input('method'), 'string', '');
             $where['ip'] = parameterCheck($request->input('ip'), 'string', '');

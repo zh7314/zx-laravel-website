@@ -18,8 +18,8 @@ class NewsController extends Controller
     {
         try {
             $where = [];
-            $page = parameterCheck($request->page, 'int', 0);
-            $pageSize = parameterCheck($request->pageSize, 'int', 0);
+            $page = parameterCheck($request->input('page'), 'int', 0);
+            $pageSize = parameterCheck($request->input('pageSize'), 'int', 0);
 
             $where['count'] = parameterCheck($request->input('count'), 'int', 0);
             $where['end_time'] = parameterCheck($request->input('end_time'), 'string', '');

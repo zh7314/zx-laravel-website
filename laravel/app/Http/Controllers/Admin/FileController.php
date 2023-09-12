@@ -9,22 +9,24 @@ use App\Utils\ResponseTrait;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class FileController extends Controller{
+class FileController extends Controller
+{
 
     use ResponseTrait;
 
-    public function getList(Request $request) {
+    public function getList(Request $request)
+    {
         try {
             $where = [];
-            $page = parameterCheck($request->input('page'),'int',0);
-            $pageSize = parameterCheck($request->input('pageSize'),'int',0);
+            $page = parameterCheck($request->input('page'), 'int', 0);
+            $pageSize = parameterCheck($request->input('pageSize'), 'int', 0);
 
-            $where['admin_id']= parameterCheck($request->input('admin_id'),'float',0);
-$where['file_name']= parameterCheck($request->input('file_name'),'string','');
-$where['file_path']= parameterCheck($request->input('file_path'),'string','');
-$where['file_size']= parameterCheck($request->input('file_size'),'int',0);
+            $where['admin_id'] = parameterCheck($request->input('admin_id'), 'float', 0);
+            $where['file_name'] = parameterCheck($request->input('file_name'), 'string', '');
+            $where['file_path'] = parameterCheck($request->input('file_path'), 'string', '');
+            $where['file_size'] = parameterCheck($request->input('file_size'), 'int', 0);
 
-            $data = FileService::getList($where,$page,$pageSize);
+            $data = FileService::getList($where, $page, $pageSize);
 
             return $this->success($data);
         } catch (Throwable $e) {
@@ -32,14 +34,15 @@ $where['file_size']= parameterCheck($request->input('file_size'),'int',0);
         }
     }
 
-    public function getAll(Request $request) {
+    public function getAll(Request $request)
+    {
         try {
             $where = [];
 
-            $where['admin_id']= parameterCheck($request->input('admin_id'),'float',0);
-$where['file_name']= parameterCheck($request->input('file_name'),'string','');
-$where['file_path']= parameterCheck($request->input('file_path'),'string','');
-$where['file_size']= parameterCheck($request->input('file_size'),'int',0);
+            $where['admin_id'] = parameterCheck($request->input('admin_id'), 'float', 0);
+            $where['file_name'] = parameterCheck($request->input('file_name'), 'string', '');
+            $where['file_path'] = parameterCheck($request->input('file_path'), 'string', '');
+            $where['file_size'] = parameterCheck($request->input('file_size'), 'int', 0);
 
 
             $data = FileService::getAll($where);
@@ -65,15 +68,16 @@ $where['file_size']= parameterCheck($request->input('file_size'),'int',0);
         }
     }
 
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
 
         DB::beginTransaction();
         try {
             $where = [];
-            $where['admin_id']= parameterCheck($request->input('admin_id'),'float',0);
-$where['file_name']= parameterCheck($request->input('file_name'),'string','');
-$where['file_path']= parameterCheck($request->input('file_path'),'string','');
-$where['file_size']= parameterCheck($request->input('file_size'),'int',0);
+            $where['admin_id'] = parameterCheck($request->input('admin_id'), 'float', 0);
+            $where['file_name'] = parameterCheck($request->input('file_name'), 'string', '');
+            $where['file_path'] = parameterCheck($request->input('file_path'), 'string', '');
+            $where['file_size'] = parameterCheck($request->input('file_size'), 'int', 0);
 
             $data = FileService::add($where);
 
@@ -85,16 +89,17 @@ $where['file_size']= parameterCheck($request->input('file_size'),'int',0);
         }
     }
 
-    public function save(Request $request) {
+    public function save(Request $request)
+    {
 
         DB::beginTransaction();
         try {
             $where = [];
             $where['id'] = parameterCheck($request->input('id'), 'int', 0);
-            $where['admin_id']= parameterCheck($request->input('admin_id'),'float',0);
-$where['file_name']= parameterCheck($request->input('file_name'),'string','');
-$where['file_path']= parameterCheck($request->input('file_path'),'string','');
-$where['file_size']= parameterCheck($request->input('file_size'),'int',0);
+            $where['admin_id'] = parameterCheck($request->input('admin_id'), 'float', 0);
+            $where['file_name'] = parameterCheck($request->input('file_name'), 'string', '');
+            $where['file_path'] = parameterCheck($request->input('file_path'), 'string', '');
+            $where['file_size'] = parameterCheck($request->input('file_size'), 'int', 0);
 
             $data = FileService::save($where);
 
@@ -106,7 +111,8 @@ $where['file_size']= parameterCheck($request->input('file_size'),'int',0);
         }
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request)
+    {
 
         DB::beginTransaction();
         try {
