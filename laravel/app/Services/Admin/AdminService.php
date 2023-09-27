@@ -129,7 +129,7 @@ class AdminService
         isset($where['login_ip']) && $admin->login_ip = $where['login_ip'];
         isset($where['mobile']) && $admin->mobile = $where['mobile'];
         isset($where['name']) && $admin->name = $where['name'];
-        isset($where['password']) && $admin->password = $where['password'];
+        isset($where['password']) && $admin->password = md5(md5($where['password']));
         isset($where['real_name']) && $admin->real_name = $where['real_name'];
         isset($where['salt']) && $admin->salt = $where['salt'];
         isset($where['sex']) && $admin->sex = $where['sex'];
