@@ -18,8 +18,8 @@ class DownloadController extends Controller
     {
         try {
             $where = [];
-            $page = parameterCheck($request->page, 'int', 0);
-            $pageSize = parameterCheck($request->pageSize, 'int', 0);
+            $page = parameterCheck($request->input('page'), 'int', 0);
+            $pageSize = parameterCheck($request->input('pageSize'), 'int', 0);
 
             $where['admin_id'] = parameterCheck($request->input('admin_id'), 'float', 0);
             $where['download_cate_id'] = parameterCheck($request->input('download_cate_id'), 'float', 0);

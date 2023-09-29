@@ -18,8 +18,8 @@ class AdminLogController extends Controller
     {
         try {
             $where = [];
-            $page = parameterCheck($request->page, 'int', 0);
-            $pageSize = parameterCheck($request->pageSize, 'int', 0);
+            $page = parameterCheck($request->input('page'), 'int', 0);
+            $pageSize = parameterCheck($request->input('pageSize'), 'int', 0);
 
             $where['admin_name'] = parameterCheck($request->input('admin_name'), 'string', '');
             $where['data'] = parameterCheck($request->input('data'), 'string', '');
